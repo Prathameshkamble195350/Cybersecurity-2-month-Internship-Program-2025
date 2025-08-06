@@ -12,7 +12,7 @@ This Python-based tool detects **homoglyphs** (visually similar characters) in d
 ## 📦 Requirements
 
 - Python 3
-- No external libraries required
+- unicodedata and difflib libraries
 
 ### 📲 Install in Termux:
 ```bash
