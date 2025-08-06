@@ -1,39 +1,41 @@
-import unicodedata
 import difflib
+import unicodedata
+from utils.homoglyph_map import homoglyph_map
 
-homoglyph_map = {
-    'а': 'a', 'А': 'A',
-    'е': 'e', 'Е': 'E',
-    'о': 'o', 'О': 'O',
-    'і': 'i', 'І': 'I',
-    'р': 'p', 'Р': 'P',
-    'с': 'c', 'С': 'C',
-    'Ь': 'b', 'ʏ': 'y',
-    'ʟ': 'l', 'ꜰ': 'f',
-    'ᴋ': 'k'
-}
+# Step 1: Normalize domain using custom homoglyph map and Unicode normalization
+def normalize_domain(domain):
+    replaced = ''.join(homoglyph_map.get(c, c) for c in domain)
+    normalized = unicodedata.normalize("NFKC", replaced)
+    return normalized
 
-whitelist = [
-    'google.com', 'facebook.com', 'youtube.com', 'amazon.com',
-    'yahoo.com', 'wikipedia.org', 'twitter.com', 'instagram.com',
-    'linkedin.com', 'netflix.com', 'microsoft.com', 'apple.com',
-    'paypal.com', 'reddit.com', 'whatsapp.com', 'zoom.us',
-    'tiktok.com', 'bing.com', 'github.com', 'stackoverflow.com'
-]
+# Step 2: Check against whitelist
+def is_suspicious(input_domain, whitelist):
+    normalized = normalize_domain(input_domain)
+    matches = difflib.get_close_matches(normalized, whitelist, n=1, cutoff=0.9)
+    return normalized != input_domain, matches, normalized
 
-def normalize(text):
-    return ''.join(homoglyph_map.get(c, c) for c in text)
+def main():
+    whitelist = [
+        "google.com",
+        "facebook.com",
+        "youtube.com",
+        "twitter.com",
+        "instagram.com"
+    ]
 
-def is_suspicious(domain, whitelist):
-    norm_domain = normalize(domain)
-    close = difflib.get_close_matches(norm_domain, whitelist, cutoff=0.8)
-    return norm_domain, close
+    user_input = input("Enter a domain name to check: ").strip().lower()
+
+    altered, matches, normalized = is_suspicious(user_input, whitelist)
+
+    print(f"\nOriginal:   {user_input}")
+    print(f"Normalized: {normalized}")
+
+    if altered and matches:
+        print(f"⚠️  Suspicious! Looks like: {matches[0]}")
+    elif altered and not matches:
+        print("⚠️  Suspicious characters used, but doesn't match any known domain.")
+    else:
+        print("✅ Safe. No suspicious characters or homoglyphs detected.")
 
 if __name__ == "__main__":
-    domain = input("Enter domain: ")
-    normalized, matches = is_suspicious(domain, whitelist)
-    print(f"Normalized: {normalized}")
-    if matches:
-        print("⚠️ Suspicious! Looks similar to:", matches)
-    else:
-        print("✅ Domain appears safe.")
+    main()
