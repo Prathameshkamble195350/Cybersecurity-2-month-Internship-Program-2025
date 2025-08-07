@@ -1,1 +1,1 @@
-# Cybersecurity-Internship-Program-2025
+# Cybersecurity-2 month-Internship-Program-2025
