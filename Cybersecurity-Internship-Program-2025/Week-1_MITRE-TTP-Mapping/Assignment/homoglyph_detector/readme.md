@@ -22,4 +22,11 @@ git clone https://github.com/Prathameshkamble195350/Cybersecurity-2-month-Intern
 cd ~/Cybersecurity-2-month-Internship-Program-2025/Cybersecurity-Internship-Program-2025/Week-1_MITRE-TTP-Mapping/Assignment/homoglyph_detector
 ./run.sh
 
+### domains to try
+g00gle.com
+facebook.com
+youtube.com
+twitter.com
+instagram.com
+
 
