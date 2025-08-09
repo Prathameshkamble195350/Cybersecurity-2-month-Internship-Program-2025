@@ -1,6 +1,6 @@
 import difflib
 import unicodedata
-from utils.homoglyph_map import homoglyph_map
+from homoglyph_map import homoglyph_map
 
 # Step 1: Normalize domain using custom homoglyph map and Unicode normalization
 def normalize_domain(domain):
