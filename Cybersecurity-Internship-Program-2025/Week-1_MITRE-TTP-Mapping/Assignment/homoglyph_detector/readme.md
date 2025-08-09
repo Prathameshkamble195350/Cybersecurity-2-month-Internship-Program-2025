@@ -19,7 +19,7 @@ This Python-based tool detects **homoglyphs** (visually similar characters) in d
 pkg update
 pkg install python git
 git clone https://github.com/Prathameshkamble195350/Cybersecurity-2-month-Internship-Program-2025.git
-ls
-cd homoglyph_detector
-python homoglyph_detector.py
+cd ~/Cybersecurity-2-month-Internship-Program-2025/Cybersecurity-Internship-Program-2025/Week-1_MITRE-TTP-Mapping/Assignment/homoglyph_detector
+./run.sh
+
 
