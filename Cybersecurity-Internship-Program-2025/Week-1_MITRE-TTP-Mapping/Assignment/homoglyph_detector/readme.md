@@ -21,6 +21,7 @@ pkg install python git
 git clone https://github.com/Prathameshkamble195350/Cybersecurity-2-month-Internship-Program-2025.git
 cd ~/Cybersecurity-2-month-Internship-Program-2025/Cybersecurity-Internship-Program-2025/Week-1_MITRE-TTP-Mapping/Assignment/homoglyph_detector
 ./run.sh
+# working on all vivo devices.
 
 ### domains to try
 g00gle.com
