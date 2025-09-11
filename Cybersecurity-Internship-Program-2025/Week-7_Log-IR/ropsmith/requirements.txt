@@ -1,0 +1,4 @@
+capstone
+networkx
+flask
+graphviz
