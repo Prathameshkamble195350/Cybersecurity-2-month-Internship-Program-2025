@@ -1,22 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-  <title>Google Sign In</title>
+  <meta charset="utf-8">
+  <title>Sign in — Google</title>
   <style>
-    body { font-family: Arial, sans-serif; background:#f2f2f2; display:flex; align-items:center; justify-content:center; height:100vh; }
-    .card { background:#fff; padding:30px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.1); width:300px; }
-    input, button { width:100%; margin:8px 0; padding:10px; border:1px solid #ccc; border-radius:6px; }
-    button { background:#4285f4; color:white; border:none; }
+    body{font-family:Arial;background:#f2f2f2}
+    .card{max-width:360px;margin:80px auto;background:#fff;padding:20px;border-radius:8px}
+    .notice{color:#b30000;font-size:12px;margin-bottom:10px}
   </style>
 </head>
 <body>
   <div class="card">
-    <h2>Sign in with Google</h2>
+    <div class="notice"><strong>TRAINING DEMO:</strong> This is a simulated page. Do not enter real credentials.</div>
+    <h3>Sign in</h3>
     <form method="post">
-      <input type="text" name="username" placeholder="Email or phone" required>
-      <input type="password" name="password" placeholder="Enter password" required>
-      <button type="submit">Login</button>
+      <input name="username" placeholder="Email or phone" required style="width:100%;padding:8px;margin:6px 0">
+      <input name="password" type="password" placeholder="Password" required style="width:100%;padding:8px;margin:6px 0">
+      <button type="submit" style="width:100%;padding:10px;margin-top:8px">Sign in</button>
     </form>
+    <p style="font-size:12px;color:#666;margin-top:12px">This demo is for training only.</p>
   </div>
 </body>
 </html>
