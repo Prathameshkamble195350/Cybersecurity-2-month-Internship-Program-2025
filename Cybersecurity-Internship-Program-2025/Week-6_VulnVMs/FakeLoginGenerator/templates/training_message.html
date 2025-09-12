@@ -1,18 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>Training Complete</title>
-  <style>
-    body { font-family: Arial, sans-serif; background:#e8f9f5; display:flex; align-items:center; justify-content:center; height:100vh; }
-    .msg { background:#fff; padding:30px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.1); max-width:400px; text-align:center; }
-  </style>
+<head><meta charset="utf-8"><title>Simulation Complete</title>
+<style>body{font-family:Arial;background:#f5f7fb;color:#111;text-align:center;padding:40px}.box{max-width:720px;margin:auto;background:#fff;padding:24px;border-radius:8px}</style>
 </head>
 <body>
-  <div class="msg">
-    <h2>Simulation Complete</h2>
-    <p>You entered: <b>{{ user }}</b> on the <b>{{ site }}</b> page.</p>
-    <p>This was <strong>only a training exercise</strong>. Never enter your real credentials on unknown pages.</p>
-    <p><em>Always check the URL and enable 2FA.</em></p>
+  <div class="box">
+    <h2>Simulation Complete — Training Notice</h2>
+    <p>You submitted a demo credential for <strong>{{ site }}</strong>.</p>
+    <p>Submitted username: <strong>{{ user }}</strong></p>
+    <p>This was a training exercise. If this were a real incident, follow your organization's incident response procedures and change compromised credentials immediately.</p>
   </div>
 </body>
 </html>
