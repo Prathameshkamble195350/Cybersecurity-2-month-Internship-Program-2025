@@ -1,37 +1,28 @@
 import argparse
-from ropsmith.core.loader import load_binary
-from ropsmith.core.gadget_finder import find_gadgets
-from ropsmith.core.chain_hypotheses import generate_chains
-from ropsmith.core.visualizer import visualize_gadgets
-from ropsmith.banner import print_banner
+from .banner import print_banner
+from .core import loader, disasm, gadget_finder, graph_builder, chain_hypotheses
 
 def main():
-    print_banner()
-
-    parser = argparse.ArgumentParser(description="ROPSmith - ROP Chain Generator")
+    parser = argparse.ArgumentParser(description="ROPSmith: ROP Chain Exploration Tool")
     parser.add_argument("binary", help="Path to ELF binary")
-    parser.add_argument("--graph", action="store_true", help="Generate ROP graph visualization")
     args = parser.parse_args()
 
-    # Load binary
-    binary_path = args.binary
-    print(f"[+] Loaded binary: {binary_path}")
+    print_banner()
+    binary = loader.load_binary(args.binary)
+    print(f"[+] Loaded binary: {binary['path']} ({binary['arch']})")
 
-    # Find gadgets
-    gadgets = find_gadgets(binary_path)
-    print(f"[+] Found {len(gadgets)} gadgets")
+    insns = disasm.disassemble(binary)
+    gadgets = gadget_finder.find_gadgets(insns)
+    graph = graph_builder.build_graph(gadgets)
+    chains = chain_hypotheses.generate(graph)
 
-    # Print a few gadget samples
+    print("\n[+] Found Gadgets:")
     for g in gadgets[:10]:
-        print(f"   -> {hex(g[0])}: {g[1]}")
+        print("   ->", g)
 
-    # Generate chain hypotheses
-    chains = generate_chains(gadgets)
-    print("\n[+] Example ROP Chains:")
+    print("\n[+] Example Hypotheses:")
     for c in chains[:3]:
-        print("   -> " + " -> ".join(c))
+        print("   ->", " -> ".join(c))
 
-    # Graph option
-    if args.graph:
-        print("\n[+] Generating gadget graph...")
-        visualize_gadgets(gadgets, "rop_graph.png")
+if __name__ == "__main__":
+    main()
