@@ -1,11 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 
-// Vulnerable function with buffer overflow
+// Safe input (no implicit gets)
 void vulnerable() {
     char buf[64];
     printf("Enter some input: ");
-    gets(buf);   // ⚠️ Insecure function, allows buffer overflow
+    fflush(stdout);
+    if (fgets(buf, sizeof(buf), stdin) != NULL) {
+        // remove newline if present
+        buf[strcspn(buf, "\n")] = '\0';
+    }
 }
 
 int main() {
